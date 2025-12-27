@@ -1,0 +1,323 @@
+{%- comment -%}
+  Contact Page Section
+  LIFE NOSTALGIA - Plant Shop
+{%- endcomment -%}
+
+<div class="contact-page">
+  <div class="container">
+    <div class="contact-content">
+      <h1 class="contact-title">CONTACT</h1>
+
+      <div class="contact-main">
+        <h2 class="shop-name">LIFE NOSTALGIA</h2>
+
+        <div class="contact-info">
+          <dl class="info-item">
+            <dt>address</dt>
+            <dd>東京都世田谷区下馬2－44－11</dd>
+          </dl>
+
+          <dl class="info-item">
+            <dt>tel</dt>
+            <dd>03 5787 6672</dd>
+          </dl>
+
+          <dl class="info-item">
+            <dt>mail</dt>
+            <dd>info@lifenostalgia.jp</dd>
+          </dl>
+
+          <dl class="info-item">
+            <dt>open</dt>
+            <dd>12:00 - 19:00（不定休）</dd>
+          </dl>
+        </div>
+
+        <div class="contact-description">
+          <p>ご質問・ご相談はお気軽にお問い合わせください。</p>
+          <p>通常2〜3営業日以内にご返信いたします。</p>
+        </div>
+      </div>
+
+      <div class="contact-form-wrapper">
+        <h3 class="form-heading">お問い合わせフォーム</h3>
+
+        {%- form 'contact', class: 'contact-form' -%}
+          {%- if form.posted_successfully? -%}
+            <div class="form-success">
+              <p>お問い合わせありがとうございます。</p>
+              <p>内容を確認の上、ご連絡させていただきます。</p>
+            </div>
+          {%- else -%}
+            {%- if form.errors -%}
+              <div class="form-errors">
+                <p>{{ form.errors | default_errors }}</p>
+              </div>
+            {%- endif -%}
+
+            <div class="form-group">
+              <label for="contact-name">お名前 <span class="required">*</span></label>
+              <input type="text" id="contact-name" name="contact[name]" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-email">メールアドレス <span class="required">*</span></label>
+              <input type="email" id="contact-email" name="contact[email]" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-phone">電話番号</label>
+              <input type="tel" id="contact-phone" name="contact[phone]">
+            </div>
+
+            <div class="form-group">
+              <label for="contact-subject">件名</label>
+              <select id="contact-subject" name="contact[subject]">
+                <option value="">選択してください</option>
+                <option value="商品について">商品について</option>
+                <option value="配送について">配送について</option>
+                <option value="返品・交換について">返品・交換について</option>
+                <option value="その他">その他</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message">お問い合わせ内容 <span class="required">*</span></label>
+              <textarea id="contact-message" name="contact[body]" rows="6" required></textarea>
+            </div>
+
+            <div class="form-submit">
+              <button type="submit" class="btn btn-primary">送信する</button>
+            </div>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contactページ",
+  "settings": []
+}
+{% endschema %}
+
+{% stylesheet %}
+.contact-page {
+  padding: 4rem 0;
+  min-height: 60vh;
+}
+
+.contact-content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-title {
+  font-family: 'Libre Caslon Text', serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.3em;
+  color: #AB8666;
+  margin-bottom: 3rem;
+}
+
+.contact-main .shop-name {
+  font-family: 'Libre Caslon Text', serif;
+  font-size: 2.4rem;
+  letter-spacing: 0.15em;
+  color: #252525;
+  margin-bottom: 2rem;
+}
+
+.contact-info {
+  margin-bottom: 2rem;
+}
+
+.info-item {
+  margin: 0 0 1rem;
+}
+
+.info-item dt {
+  font-family: 'Libre Caslon Text', serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  color: #AB8666;
+  margin-bottom: 0.3rem;
+}
+
+.info-item dd {
+  font-size: 1.5rem;
+  color: #252525;
+  margin: 0;
+}
+
+.contact-description {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+.contact-description p {
+  font-size: 1.4rem;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.contact-form-wrapper {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid #eee;
+}
+
+.form-heading {
+  font-family: 'Libre Caslon Text', serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
+  color: #252525;
+  margin-bottom: 2rem;
+}
+
+.contact-form {
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.required {
+  color: #AB8666;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  font-size: 1.4rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #AB8666;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.form-submit {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.form-submit .btn {
+  min-width: 200px;
+  background: #AB8666;
+  border: none;
+}
+
+.form-submit .btn:hover {
+  background: #8a6b52;
+}
+
+.form-success {
+  background: #f0f7f0;
+  border: 1px solid #2c5530;
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.form-success p {
+  color: #2c5530;
+  font-size: 1.4rem;
+  margin: 0.5rem 0;
+}
+
+.form-errors {
+  background: #fff5f5;
+  border: 1px solid #e53935;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-errors p {
+  color: #e53935;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .contact-page {
+    padding: 3rem 1.5rem;
+  }
+
+  .contact-main .shop-name {
+    font-size: 2rem;
+  }
+
+  .contact-form-wrapper {
+    margin-top: 3rem;
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-page {
+    padding: 2rem 1rem;
+  }
+
+  .contact-title {
+    font-size: 1.2rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 2rem;
+  }
+
+  .contact-main .shop-name {
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-item dd {
+    font-size: 1.4rem;
+  }
+
+  .contact-description p {
+    font-size: 1.3rem;
+  }
+
+  .form-heading {
+    font-size: 1.4rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.8rem 1rem;
+    font-size: 1.3rem;
+  }
+
+  .form-submit .btn {
+    width: 100%;
+  }
+}
+{% endstylesheet %}
