@@ -1,12 +1,23 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero-banner",
       "settings": {
-        "heading": "LIFE NOSTALGIA",
+        "background_image": "shopify://shop_images/2025-12-27_20.49.58.png",
         "subheading": "",
+        "heading": "",
         "text": "",
         "button_text": "",
+        "button_link": "",
         "height": 80
       }
     },
@@ -14,6 +25,7 @@
       "type": "featured-collection",
       "settings": {
         "title": "",
+        "collection": "",
         "products_to_show": 12,
         "show_view_all": true
       }
@@ -24,7 +36,8 @@
         "title": "ABOUT",
         "store_name": "LIFE NOSTALGIA",
         "address": "東京都世田谷区下馬2－44－11",
-        "phone": "03 5787 6672"
+        "phone": "03 5787 6672",
+        "description": ""
       }
     }
   },
