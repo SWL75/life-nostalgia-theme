@@ -1,0 +1,47 @@
+{%- comment -%}
+  Main Page Section - Shows page content
+{%- endcomment -%}
+
+<section class="main-page">
+  <div class="container">
+    <div class="page-content">
+      {{ page.content }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ページコンテンツ",
+  "settings": []
+}
+{% endschema %}
+
+{% stylesheet %}
+.main-page {
+  padding: 4rem 0;
+}
+
+.page-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-content h1,
+.page-content h2,
+.page-content h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.page-content p {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.page-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 2rem 0;
+}
+{% endstylesheet %}

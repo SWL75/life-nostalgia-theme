@@ -1,0 +1,211 @@
+{%- comment -%}
+  Collection Template Section
+  LIFE NOSTALGIA - Plant Shop
+{%- endcomment -%}
+
+<section class="collection-template">
+  <div class="container">
+    <header class="collection-header">
+      <h1 class="collection-title">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <div class="collection-description">
+          {{ collection.description }}
+        </div>
+      {%- endif -%}
+      <p class="collection-count">{{ collection.products_count }}件の商品</p>
+    </header>
+
+    {%- if collection.products.size > 0 -%}
+      <div class="collection-grid grid grid-4">
+        {%- for product in collection.products -%}
+          <div class="product-card card">
+            <a href="{{ product.url }}" class="product-card-link">
+              <div class="card-image">
+                {%- if product.featured_image != blank -%}
+                  {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+                {%- else -%}
+                  <div class="placeholder-image"></div>
+                {%- endif -%}
+
+                {%- if product.available == false -%}
+                  <span class="badge badge-soldout">売り切れ</span>
+                {%- elsif product.compare_at_price > product.price -%}
+                  <span class="badge badge-sale">SALE</span>
+                {%- endif -%}
+              </div>
+
+              <div class="card-content">
+                <h3 class="card-title">{{ product.title }}</h3>
+
+                {%- if product.metafields.plant.scientific_name -%}
+                  <p class="product-scientific-name">
+                    <em>{{ product.metafields.plant.scientific_name.value }}</em>
+                  </p>
+                {%- endif -%}
+
+                {%- if product.metafields.pot.maker -%}
+                  <p class="product-pot-maker">鉢: {{ product.metafields.pot.maker.value }}</p>
+                {%- endif -%}
+
+                <div class="card-price">
+                  {%- if product.compare_at_price > product.price -%}
+                    <span class="price-compare">{{ product.compare_at_price | money }}</span>
+                  {%- endif -%}
+                  <span class="price-current">{{ product.price | money }}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="pagination">
+          {{ paginate | default_pagination }}
+        </nav>
+      {%- endif -%}
+    {%- else -%}
+      <div class="collection-empty">
+        <p>このコレクションには商品がありません</p>
+        <a href="/collections/all" class="btn btn-primary">すべての商品を見る</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "コレクション",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "1ページあたりの商品数",
+      "min": 4,
+      "max": 24,
+      "step": 4,
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "コレクション"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.collection-template {
+  padding: 4rem 0;
+}
+
+.collection-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.collection-title {
+  font-size: 3rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.collection-description {
+  max-width: 600px;
+  margin: 0 auto 1rem;
+  color: #666;
+  font-size: 1.4rem;
+  line-height: 1.8;
+}
+
+.collection-count {
+  color: #999;
+  font-size: 1.3rem;
+}
+
+.collection-grid {
+  margin-bottom: 3rem;
+}
+
+.product-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.product-card .card-image {
+  position: relative;
+}
+
+.product-card .badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.product-scientific-name {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 0.3rem;
+}
+
+.product-pot-maker {
+  font-size: 1.1rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.price-compare {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 1.3rem;
+  margin-right: 0.5rem;
+}
+
+.price-current {
+  color: #2c5530;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.pagination a,
+.pagination span {
+  display: inline-block;
+  padding: 0.8rem 1.2rem;
+  margin: 0 0.3rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #333;
+}
+
+.pagination a:hover {
+  background: #f5f5f0;
+}
+
+.pagination .current {
+  background: #2c5530;
+  color: white;
+  border-color: #2c5530;
+}
+
+.collection-empty {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.collection-empty p {
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+.placeholder-image {
+  background: #f0f0f0;
+  width: 100%;
+  padding-bottom: 100%;
+}
+{% endstylesheet %}

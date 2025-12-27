@@ -1,0 +1,112 @@
+{%- comment -%}
+  Product Care Guide Snippet
+  Displays care guide metaobject: placement, watering, notes
+{%- endcomment -%}
+
+{%- liquid
+  assign care = product.metafields.custom.care_guide.value
+  assign has_care = false
+
+  if care.placement or care.watering or care.notes
+    assign has_care = true
+  endif
+-%}
+
+{%- if has_care -%}
+  <div class="care-guide">
+    <h3 class="care-guide-title">育て方</h3>
+
+    {%- if care.placement -%}
+      <div class="care-section">
+        <h4 class="care-section-title">
+          <span class="care-icon">&#9728;</span>
+          置き場所
+        </h4>
+        <div class="care-content">
+          {{ care.placement | newline_to_br }}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if care.watering -%}
+      <div class="care-section">
+        <h4 class="care-section-title">
+          <span class="care-icon">&#128167;</span>
+          水やり
+        </h4>
+        <div class="care-content">
+          {{ care.watering | newline_to_br }}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if care.temperature -%}
+      <div class="care-section">
+        <h4 class="care-section-title">
+          <span class="care-icon">&#127777;</span>
+          温度
+        </h4>
+        <div class="care-content">
+          {{ care.temperature | newline_to_br }}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if care.notes -%}
+      <div class="care-section">
+        <h4 class="care-section-title">
+          <span class="care-icon">&#9888;</span>
+          注意事項
+        </h4>
+        <div class="care-content">
+          {{ care.notes | newline_to_br }}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+<style>
+.care-guide {
+  margin: 2rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f0f7f0 0%, #e8f5e9 100%);
+  border-radius: 12px;
+}
+
+.care-guide-title {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: #2c5530;
+  border-bottom: 2px solid #2c5530;
+  padding-bottom: 0.5rem;
+}
+
+.care-section {
+  margin-bottom: 1.5rem;
+}
+
+.care-section:last-child {
+  margin-bottom: 0;
+}
+
+.care-section-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  color: #3d6b41;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.care-icon {
+  font-size: 1.4rem;
+}
+
+.care-content {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: #444;
+  padding-left: 2rem;
+}
+</style>

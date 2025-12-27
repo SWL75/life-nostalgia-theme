@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "show_plant_info": true,
+        "show_dimensions": true,
+        "show_care_guide": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

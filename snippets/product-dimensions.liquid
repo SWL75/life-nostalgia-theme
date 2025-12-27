@@ -1,0 +1,107 @@
+{%- comment -%}
+  Product Dimensions Snippet
+  Displays dimensions metaobject: height, width, pot height, pot diameter
+{%- endcomment -%}
+
+{%- liquid
+  assign dims = product.metafields.custom.dimensions.value
+  assign has_dims = false
+
+  if dims.overall_height_cm or dims.plant_width_cm or dims.pot_height_cm or dims.pot_diameter_cm
+    assign has_dims = true
+  endif
+-%}
+
+{%- if has_dims -%}
+  <div class="dimensions">
+    <h3 class="dimensions-title">寸法</h3>
+    <div class="dimensions-grid">
+      {%- if dims.overall_height_cm -%}
+        <div class="dimension-item">
+          <span class="dimension-label">全体の高さ</span>
+          <span class="dimension-value">約 {{ dims.overall_height_cm }}cm</span>
+        </div>
+      {%- endif -%}
+
+      {%- if dims.plant_width_cm -%}
+        <div class="dimension-item">
+          <span class="dimension-label">植物の幅</span>
+          <span class="dimension-value">約 {{ dims.plant_width_cm }}cm</span>
+        </div>
+      {%- endif -%}
+
+      {%- if dims.pot_height_cm -%}
+        <div class="dimension-item">
+          <span class="dimension-label">鉢の高さ</span>
+          <span class="dimension-value">約 {{ dims.pot_height_cm }}cm</span>
+        </div>
+      {%- endif -%}
+
+      {%- if dims.pot_diameter_cm -%}
+        <div class="dimension-item">
+          <span class="dimension-label">鉢の直径</span>
+          <span class="dimension-value">約 {{ dims.pot_diameter_cm }}cm</span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if dims.disclaimer -%}
+      <p class="dimensions-disclaimer">{{ dims.disclaimer }}</p>
+    {%- else -%}
+      <p class="dimensions-disclaimer">※ 寸法は測定時のものです。個体差により若干のサイズの違いがございます。</p>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+<style>
+.dimensions {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.dimensions-title {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.dimensions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 480px) {
+  .dimensions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dimension-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.dimension-label {
+  color: #666;
+  font-size: 1.2rem;
+}
+
+.dimension-value {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.dimensions-disclaimer {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: #888;
+  font-style: italic;
+}
+</style>

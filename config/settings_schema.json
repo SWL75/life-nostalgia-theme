@@ -1,0 +1,115 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "LIFE NOSTALGIA Theme",
+    "theme_version": "1.0.0",
+    "theme_author": "BASE to Shopify Migration",
+    "theme_documentation_url": "https://github.com/SWL75/BASE_to_Shopify_AI_First_Migration",
+    "theme_support_url": "https://github.com/SWL75/BASE_to_Shopify_AI_First_Migration/issues"
+  },
+  {
+    "name": "ロゴ",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "ロゴ画像"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "ファビコン"
+      }
+    ]
+  },
+  {
+    "name": "カラー",
+    "settings": [
+      {
+        "type": "color",
+        "id": "colors_text",
+        "label": "テキストカラー",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "colors_background_1",
+        "label": "背景色 1",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "colors_background_2",
+        "label": "背景色 2",
+        "default": "#F5F5F0"
+      },
+      {
+        "type": "color",
+        "id": "colors_accent_1",
+        "label": "アクセントカラー 1",
+        "default": "#2C5530"
+      },
+      {
+        "type": "color",
+        "id": "colors_accent_2",
+        "label": "アクセントカラー 2",
+        "default": "#3D6B41"
+      }
+    ]
+  },
+  {
+    "name": "フォント",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "本文フォント",
+        "default": "noto_sans_jp_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_heading_font",
+        "label": "見出しフォント",
+        "default": "noto_sans_jp_n7"
+      }
+    ]
+  },
+  {
+    "name": "商品ページ",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "product_show_plant_info",
+        "label": "植物情報を表示",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "product_show_dimensions",
+        "label": "寸法を表示",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "product_show_care_guide",
+        "label": "育て方を表示",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "SNS",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter",
+        "label": "Twitter URL"
+      }
+    ]
+  }
+]

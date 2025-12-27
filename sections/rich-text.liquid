@@ -1,0 +1,110 @@
+{%- comment -%}
+  Rich Text Section
+  LIFE NOSTALGIA - Plant Shop
+{%- endcomment -%}
+
+<section class="rich-text-section">
+  <div class="container">
+    <div class="rich-text-content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="rich-text-heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <div class="rich-text-body">
+          {{ section.settings.text }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.button_text != blank -%}
+        <a href="{{ section.settings.button_link }}" class="btn btn-secondary">
+          {{ section.settings.button_text }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "リッチテキスト",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "見出し"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "テキスト"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "ボタンテキスト"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "ボタンリンク"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "テキスト配置",
+      "options": [
+        { "value": "left", "label": "左揃え" },
+        { "value": "center", "label": "中央揃え" },
+        { "value": "right", "label": "右揃え" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "default": "#f5f5f0"
+    }
+  ],
+  "presets": [
+    {
+      "name": "リッチテキスト"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.rich-text-section {
+  padding: 5rem 0;
+  background-color: {{ section.settings.background_color }};
+}
+
+.rich-text-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: {{ section.settings.text_alignment }};
+}
+
+.rich-text-heading {
+  font-size: 2.4rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.rich-text-body {
+  font-size: 1.5rem;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.rich-text-body p {
+  margin-bottom: 1rem;
+}
+
+.rich-text-body p:last-child {
+  margin-bottom: 0;
+}
+{% endstylesheet %}

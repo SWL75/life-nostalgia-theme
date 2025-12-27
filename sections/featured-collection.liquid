@@ -1,0 +1,163 @@
+{%- comment -%}
+  Featured Collection Section
+  LIFE NOSTALGIA - Plant Shop
+{%- endcomment -%}
+
+<section class="featured-collection">
+  <div class="container">
+    {%- if section.settings.title != blank -%}
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.collection != blank -%}
+      {%- assign collection = section.settings.collection -%}
+      <div class="product-grid grid grid-4">
+        {%- for product in collection.products limit: section.settings.products_to_show -%}
+          <div class="product-card card">
+            <a href="{{ product.url }}" class="product-card-link">
+              <div class="card-image">
+                {%- if product.featured_image != blank -%}
+                  {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+                {%- else -%}
+                  <div class="placeholder-image"></div>
+                {%- endif -%}
+
+                {%- if product.available == false -%}
+                  <span class="badge badge-soldout">売り切れ</span>
+                {%- elsif product.compare_at_price > product.price -%}
+                  <span class="badge badge-sale">SALE</span>
+                {%- endif -%}
+              </div>
+
+              <div class="card-content">
+                <h3 class="card-title">{{ product.title }}</h3>
+
+                {%- if product.metafields.plant.scientific_name -%}
+                  <p class="product-scientific-name">
+                    <em>{{ product.metafields.plant.scientific_name.value }}</em>
+                  </p>
+                {%- endif -%}
+
+                <div class="card-price">
+                  {%- if product.compare_at_price > product.price -%}
+                    <span class="price-compare">{{ product.compare_at_price | money }}</span>
+                  {%- endif -%}
+                  <span class="price-current">{{ product.price | money }}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.show_view_all -%}
+        <div class="section-footer">
+          <a href="{{ collection.url }}" class="btn btn-secondary">すべて見る</a>
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <p class="no-collection">コレクションを選択してください</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "おすすめ商品",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "見出し",
+      "default": "おすすめの植物"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "コレクション"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "表示する商品数",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "「すべて見る」ボタンを表示",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "おすすめ商品"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.featured-collection {
+  padding: 4rem 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.4rem;
+  color: #333;
+}
+
+.product-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.product-card .card-image {
+  position: relative;
+}
+
+.product-card .badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.product-scientific-name {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.price-compare {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 1.3rem;
+  margin-right: 0.5rem;
+}
+
+.price-current {
+  color: #2c5530;
+}
+
+.section-footer {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.no-collection {
+  text-align: center;
+  color: #666;
+}
+
+.placeholder-image {
+  background: #f0f0f0;
+  width: 100%;
+  padding-bottom: 100%;
+}
+{% endstylesheet %}

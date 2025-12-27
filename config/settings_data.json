@@ -1,0 +1,17 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "colors_text": "#333333",
+      "colors_background_1": "#FFFFFF",
+      "colors_background_2": "#F5F5F0",
+      "colors_accent_1": "#2C5530",
+      "colors_accent_2": "#3D6B41",
+      "type_body_font": "noto_sans_jp_n4",
+      "type_heading_font": "noto_sans_jp_n7",
+      "product_show_plant_info": true,
+      "product_show_dimensions": true,
+      "product_show_care_guide": true
+    }
+  }
+}

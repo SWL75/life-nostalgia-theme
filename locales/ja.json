@@ -1,0 +1,82 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "コンテンツにスキップ"
+    },
+    "cart": {
+      "title": "カート",
+      "empty": "カートに商品がありません",
+      "add": "カートに追加",
+      "update": "カートを更新",
+      "checkout": "ご購入手続きへ",
+      "subtotal": "小計",
+      "quantity": "数量",
+      "remove": "削除"
+    },
+    "search": {
+      "placeholder": "検索",
+      "submit": "検索する"
+    },
+    "social": {
+      "share": "シェア",
+      "share_on_facebook": "Facebookでシェア",
+      "share_on_twitter": "Twitterでシェア",
+      "share_on_pinterest": "Pinterestでピン"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "カートに追加",
+      "sold_out": "売り切れ",
+      "on_sale": "セール",
+      "quantity": "数量",
+      "sku": "SKU",
+      "vendor": "販売元",
+      "description": "商品説明",
+      "price": "価格",
+      "compare_at_price": "通常価格",
+      "sale_price": "セール価格"
+    },
+    "plant_info": {
+      "title": "植物情報",
+      "scientific_name": "学名",
+      "family": "科",
+      "genus": "属",
+      "origin_country": "原産地",
+      "pot_maker": "鉢作家"
+    },
+    "dimensions": {
+      "title": "サイズ",
+      "overall_height": "全体の高さ",
+      "plant_width": "株幅",
+      "pot_height": "鉢の高さ",
+      "pot_diameter": "鉢の直径",
+      "disclaimer": "※植物のため、サイズは目安となります"
+    },
+    "care_guide": {
+      "title": "育て方",
+      "placement": "置き場所",
+      "watering": "水やり",
+      "temperature": "耐寒性",
+      "notes": "備考"
+    }
+  },
+  "collections": {
+    "collection": {
+      "title": "コレクション",
+      "all": "すべての商品",
+      "empty": "このコレクションには商品がありません",
+      "products_count": "{{ count }}件の商品"
+    }
+  },
+  "templates": {
+    "404": {
+      "title": "ページが見つかりません",
+      "subtext": "お探しのページは見つかりませんでした",
+      "link": "トップページへ戻る"
+    }
+  },
+  "date_formats": {
+    "month_day_year": "%Y年%m月%d日"
+  }
+}

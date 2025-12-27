@@ -1,0 +1,90 @@
+{%- comment -%}
+  Product Plant Info Snippet
+  Displays plant metafields: scientific name, family, genus, origin, pot maker
+{%- endcomment -%}
+
+{%- liquid
+  assign has_plant_info = false
+  if product.metafields.plant.scientific_name or product.metafields.plant.family or product.metafields.plant.origin_country or product.metafields.pot.maker
+    assign has_plant_info = true
+  endif
+-%}
+
+{%- if has_plant_info -%}
+  <div class="plant-info">
+    <h3 class="plant-info-title">植物情報</h3>
+    <table class="plant-info-table">
+      {%- if product.metafields.plant.scientific_name -%}
+        <tr>
+          <th>学名</th>
+          <td><em>{{ product.metafields.plant.scientific_name.value }}</em></td>
+        </tr>
+      {%- endif -%}
+
+      {%- if product.metafields.plant.family -%}
+        <tr>
+          <th>科名</th>
+          <td>{{ product.metafields.plant.family.value }}</td>
+        </tr>
+      {%- endif -%}
+
+      {%- if product.metafields.plant.genus -%}
+        <tr>
+          <th>属名</th>
+          <td>{{ product.metafields.plant.genus.value }}</td>
+        </tr>
+      {%- endif -%}
+
+      {%- if product.metafields.plant.origin_country -%}
+        <tr>
+          <th>原産地</th>
+          <td>{{ product.metafields.plant.origin_country.value }}</td>
+        </tr>
+      {%- endif -%}
+
+      {%- if product.metafields.pot.maker -%}
+        <tr>
+          <th>鉢</th>
+          <td>{{ product.metafields.pot.maker.value }}</td>
+        </tr>
+      {%- endif -%}
+    </table>
+  </div>
+{%- endif -%}
+
+<style>
+.plant-info {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: #f5f5f0;
+  border-radius: 8px;
+  border-left: 4px solid #2c5530;
+}
+
+.plant-info-title {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #2c5530;
+}
+
+.plant-info-table {
+  width: 100%;
+  font-size: 1.3rem;
+}
+
+.plant-info-table th {
+  text-align: left;
+  padding: 0.5rem 1rem 0.5rem 0;
+  width: 30%;
+  color: #666;
+  font-weight: normal;
+}
+
+.plant-info-table td {
+  padding: 0.5rem 0;
+}
+
+.plant-info-table em {
+  font-style: italic;
+}
+</style>

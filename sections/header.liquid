@@ -1,0 +1,128 @@
+{%- comment -%}
+  Header Section
+  LIFE NOSTALGIA - Plant Shop
+{%- endcomment -%}
+
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="/" class="header-logo">
+        {%- if settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 200 | image_tag: class: 'logo-image' }}
+        {%- else -%}
+          <span class="logo-text">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+
+      <nav class="header-nav">
+        <ul class="nav-list">
+          <li><a href="/collections/all">商品一覧</a></li>
+          <li><a href="/pages/about">About</a></li>
+          <li><a href="/pages/contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/cart" class="cart-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-count">{{ cart.item_count }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "ヘッダー",
+  "settings": []
+}
+{% endschema %}
+
+{% stylesheet %}
+.header {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-logo {
+  text-decoration: none;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c5530;
+}
+
+.logo-image {
+  max-height: 40px;
+  width: auto;
+}
+
+.header-nav {
+  flex: 1;
+  margin: 0 2rem;
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.nav-list a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1.4rem;
+}
+
+.nav-list a:hover {
+  color: #2c5530;
+}
+
+.cart-link {
+  position: relative;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #2c5530;
+  color: white;
+  font-size: 1rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .header-nav {
+    display: none;
+  }
+}
+{% endstylesheet %}

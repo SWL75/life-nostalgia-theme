@@ -1,0 +1,279 @@
+{%- comment -%}
+  Main Product Section
+  BASE to Shopify Migration - LIFE NOSTALGIA
+
+  Displays:
+  - Product images
+  - Title, price, description
+  - Plant metafields (scientific name, family, origin)
+  - Dimensions metaobject
+  - Care guide metaobject
+  - Pot maker
+  - Add to cart
+{%- endcomment -%}
+
+<section class="product-section">
+  <div class="container">
+    <div class="product-grid">
+      {%- comment -%} Product Images {%- endcomment -%}
+      <div class="product-images">
+        {%- if product.featured_image -%}
+          <div class="product-image-main">
+            {{ product.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'product-image' }}
+          </div>
+        {%- endif -%}
+
+        {%- if product.images.size > 1 -%}
+          <div class="product-thumbnails">
+            {%- for image in product.images -%}
+              <div class="product-thumbnail">
+                {{ image | image_url: width: 150 | image_tag: loading: 'lazy' }}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Product Info {%- endcomment -%}
+      <div class="product-info">
+        <h1 class="product-title">{{ product.title }}</h1>
+
+        {%- comment -%} Plant Attributes from Metafields {%- endcomment -%}
+        {%- if product.metafields.plant.scientific_name -%}
+          <p class="product-scientific-name">
+            <em>{{ product.metafields.plant.scientific_name.value }}</em>
+          </p>
+        {%- endif -%}
+
+        <div class="product-price">
+          {%- if product.compare_at_price > product.price -%}
+            <span class="price-compare">{{ product.compare_at_price | money }}</span>
+          {%- endif -%}
+          <span class="price-current">{{ product.price | money }}</span>
+        </div>
+
+        {%- comment -%} Plant Info Section {%- endcomment -%}
+        {% render 'product-plant-info', product: product %}
+
+        {%- comment -%} Dimensions Section {%- endcomment -%}
+        {% render 'product-dimensions', product: product %}
+
+        {%- comment -%} Add to Cart Form {%- endcomment -%}
+        <div class="product-form">
+          {%- form 'product', product -%}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+            {%- unless product.has_only_default_variant -%}
+              <div class="product-variants">
+                {%- for option in product.options_with_values -%}
+                  <div class="variant-option">
+                    <label for="Option-{{ forloop.index }}">{{ option.name }}</label>
+                    <select id="Option-{{ forloop.index }}" name="options[{{ option.name | escape }}]">
+                      {%- for value in option.values -%}
+                        <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>
+                          {{ value }}
+                        </option>
+                      {%- endfor -%}
+                    </select>
+                  </div>
+                {%- endfor -%}
+              </div>
+            {%- endunless -%}
+
+            <div class="product-quantity">
+              <label for="Quantity">数量</label>
+              <input type="number" id="Quantity" name="quantity" value="1" min="1">
+            </div>
+
+            <button type="submit" class="btn btn-primary add-to-cart"
+              {% if product.available == false %}disabled{% endif %}>
+              {%- if product.available -%}
+                カートに入れる
+              {%- else -%}
+                売り切れ
+              {%- endif -%}
+            </button>
+          {%- endform -%}
+        </div>
+
+        {%- comment -%} Care Guide Section {%- endcomment -%}
+        {% render 'product-care-guide', product: product %}
+
+        {%- comment -%} Product Description {%- endcomment -%}
+        <div class="product-description">
+          {{ product.description }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "商品ページ",
+  "tag": "section",
+  "class": "section-product",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_plant_info",
+      "label": "植物情報を表示",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dimensions",
+      "label": "寸法を表示",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_care_guide",
+      "label": "育て方を表示",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "商品ページ"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.product-section {
+  padding: 4rem 0;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.product-images {
+  position: sticky;
+  top: 2rem;
+}
+
+.product-image-main {
+  margin-bottom: 1rem;
+}
+
+.product-image {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.product-thumbnails {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.product-thumbnail {
+  width: 80px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.product-thumbnail:hover {
+  opacity: 1;
+}
+
+.product-title {
+  font-size: 2.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-scientific-name {
+  color: #666;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.product-price {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.price-compare {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 1rem;
+}
+
+.price-current {
+  font-weight: bold;
+  color: #333;
+}
+
+.product-form {
+  margin: 2rem 0;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.product-variants,
+.product-quantity {
+  margin-bottom: 1rem;
+}
+
+.product-variants label,
+.product-quantity label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.product-variants select,
+.product-quantity input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1.4rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 1.2rem 2.4rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #2c5530;
+  color: white;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background: #1e3d22;
+}
+
+.btn-primary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.product-description {
+  margin-top: 2rem;
+  line-height: 1.8;
+}
+{% endstylesheet %}

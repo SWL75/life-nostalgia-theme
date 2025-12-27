@@ -1,0 +1,111 @@
+{%- comment -%}
+  Footer Section
+  LIFE NOSTALGIA - Plant Shop
+{%- endcomment -%}
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <h4>{{ shop.name }}</h4>
+        <p>植物と鉢のオンラインショップ</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>ショップ</h4>
+        <ul>
+          <li><a href="/collections/all">商品一覧</a></li>
+          <li><a href="/pages/about">About</a></li>
+          <li><a href="/pages/contact">お問い合わせ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-legal">
+        <h4>ご利用ガイド</h4>
+        <ul>
+          <li><a href="/policies/shipping-policy">配送について</a></li>
+          <li><a href="/policies/refund-policy">返品について</a></li>
+          <li><a href="/policies/privacy-policy">プライバシーポリシー</a></li>
+          <li><a href="/policies/terms-of-service">特定商取引法に基づく表記</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "フッター",
+  "settings": []
+}
+{% endschema %}
+
+{% stylesheet %}
+.footer {
+  background: #2c5530;
+  color: #fff;
+  padding: 4rem 0 2rem;
+  margin-top: 4rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer h4 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.footer p {
+  font-size: 1.3rem;
+  opacity: 0.8;
+}
+
+.footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer a {
+  color: #fff;
+  opacity: 0.8;
+  text-decoration: none;
+  font-size: 1.3rem;
+}
+
+.footer a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+{% endstylesheet %}
