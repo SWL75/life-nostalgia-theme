@@ -59,8 +59,39 @@
 }
 
 @media (max-width: 768px) {
+  .footer {
+    padding: 3rem 0 1.5rem;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 2rem 0 1rem;
+    margin-top: 2rem;
+  }
+
+  .footer h4 {
+    font-size: 1.3rem;
+  }
+
+  .footer p,
+  .footer a {
+    font-size: 1.2rem;
+  }
+
+  .footer-bottom {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  .footer-bottom p {
+    font-size: 1.1rem;
   }
 }
 

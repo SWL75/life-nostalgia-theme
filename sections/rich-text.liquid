@@ -107,4 +107,35 @@
 .rich-text-body p:last-child {
   margin-bottom: 0;
 }
+
+@media (max-width: 768px) {
+  .rich-text-section {
+    padding: 3rem 0;
+  }
+
+  .rich-text-heading {
+    font-size: 2rem;
+  }
+
+  .rich-text-body {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .rich-text-section {
+    padding: 2rem 0;
+  }
+
+  .rich-text-heading {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .rich-text-body {
+    font-size: 1.3rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+}
 {% endstylesheet %}

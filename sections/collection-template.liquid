@@ -208,4 +208,43 @@
   width: 100%;
   padding-bottom: 100%;
 }
+
+@media (max-width: 768px) {
+  .collection-template {
+    padding: 3rem 0;
+  }
+
+  .collection-header {
+    margin-bottom: 2rem;
+  }
+
+  .collection-title {
+    font-size: 2.4rem;
+  }
+
+  .collection-description {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .collection-template {
+    padding: 2rem 0;
+  }
+
+  .collection-title {
+    font-size: 2rem;
+  }
+
+  .collection-grid {
+    margin-bottom: 2rem;
+  }
+
+  .pagination a,
+  .pagination span {
+    padding: 0.6rem 1rem;
+    margin: 0 0.2rem;
+    font-size: 1.2rem;
+  }
+}
 {% endstylesheet %}

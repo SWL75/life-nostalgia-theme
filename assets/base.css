@@ -48,6 +48,20 @@ h2 { font-size: 2.4rem; }
 h3 { font-size: 2rem; }
 h4 { font-size: 1.6rem; }
 
+@media (max-width: 768px) {
+  h1 { font-size: 2.6rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.8rem; }
+  h4 { font-size: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.8rem; }
+  h3 { font-size: 1.6rem; }
+  h4 { font-size: 1.4rem; }
+}
+
 p {
   margin: 0 0 1rem;
 }
@@ -57,6 +71,18 @@ p {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
 }
 
 .content-for-layout {
@@ -127,6 +153,21 @@ p {
   color: white;
 }
 
+@media (max-width: 768px) {
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn {
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    width: 100%;
+  }
+}
+
 /* Forms */
 input[type="text"],
 input[type="email"],
@@ -167,11 +208,32 @@ label {
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
 .grid-4 { grid-template-columns: repeat(4, 1fr); }
 
+@media (max-width: 1024px) {
+  .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
   .grid-2,
   .grid-3,
   .grid-4 {
     grid-template-columns: 1fr;
+  }
+
+  .grid {
+    gap: 1rem;
   }
 }
 
@@ -212,12 +274,41 @@ label {
 .card-title {
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
+  word-break: break-word;
 }
 
 .card-price {
   font-size: 1.6rem;
   font-weight: bold;
   color: #2c5530;
+}
+
+@media (max-width: 768px) {
+  .card {
+    border-radius: 6px;
+  }
+
+  .card-content {
+    padding: 1.2rem;
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+  }
+
+  .card-price {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card:hover {
+    transform: none;
+  }
+
+  .card-content {
+    padding: 1rem;
+  }
 }
 
 /* Badges */
