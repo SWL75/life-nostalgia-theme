@@ -9,10 +9,29 @@
       <h2 class="section-title">{{ section.settings.title }}</h2>
     {%- endif -%}
 
-    {%- if section.settings.collection != blank -%}
-      {%- assign collection = section.settings.collection -%}
+    {%- liquid
+      if section.settings.collection != blank
+        assign featured_collection = section.settings.collection
+      else
+        assign featured_collection = collections.all
+      endif
+
+      assign products_to_show = section.settings.products_to_show
+      assign total_products = featured_collection.products.size
+
+      # ランダム風の表示（時間ベースでオフセット）
+      assign now = 'now' | date: '%S' | plus: 0
+      if total_products > products_to_show
+        assign max_offset = total_products | minus: products_to_show
+        assign offset = now | modulo: max_offset | plus: 1
+      else
+        assign offset = 0
+      endif
+    -%}
+
+    {%- if total_products > 0 -%}
       <div class="product-grid grid grid-4">
-        {%- for product in collection.products limit: section.settings.products_to_show -%}
+        {%- for product in featured_collection.products limit: products_to_show offset: offset -%}
           <div class="product-card card">
             <a href="{{ product.url }}" class="product-card-link">
               <div class="card-image">
@@ -52,11 +71,11 @@
 
       {%- if section.settings.show_view_all -%}
         <div class="section-footer">
-          <a href="{{ collection.url }}" class="btn btn-secondary">すべて見る</a>
+          <a href="{{ featured_collection.url }}" class="btn btn-secondary">すべて見る</a>
         </div>
       {%- endif -%}
     {%- else -%}
-      <p class="no-collection">コレクションを選択してください</p>
+      <p class="no-collection">商品がありません</p>
     {%- endif -%}
   </div>
 </section>
