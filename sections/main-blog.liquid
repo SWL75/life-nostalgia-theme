@@ -1,0 +1,189 @@
+{%- comment -%}
+  Blog listing section
+  LIFE NOSTALGIA - Plant Shop
+{%- endcomment -%}
+
+<div class="blog-page">
+  <div class="container">
+    <header class="blog-header">
+      <h1>{{ blog.title }}</h1>
+      {%- if current_tags -%}
+        <p class="blog-tag-filter">タグ: {{ current_tags | join: ', ' }}</p>
+      {%- endif -%}
+    </header>
+
+    <div class="blog-articles">
+      {%- paginate blog.articles by 12 -%}
+        {%- for article in blog.articles -%}
+          <article class="blog-article-card">
+            {%- if article.image -%}
+              <a href="{{ article.url }}" class="article-image">
+                {{ article.image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+              </a>
+            {%- endif -%}
+
+            <div class="article-content">
+              <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+                {{ article.published_at | date: '%Y年%m月%d日' }}
+              </time>
+
+              <h2>
+                <a href="{{ article.url }}">{{ article.title }}</a>
+              </h2>
+
+              {%- if article.excerpt.size > 0 -%}
+                <p class="article-excerpt">{{ article.excerpt | strip_html | truncate: 150 }}</p>
+              {%- endif -%}
+
+              {%- if article.tags.size > 0 -%}
+                <div class="article-tags">
+                  {%- for tag in article.tags -%}
+                    <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+
+              <a href="{{ article.url }}" class="read-more">続きを読む</a>
+            </div>
+          </article>
+        {%- endfor -%}
+
+        {%- if paginate.pages > 1 -%}
+          <div class="pagination">
+            {{ paginate | default_pagination }}
+          </div>
+        {%- endif -%}
+      {%- endpaginate -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ブログ一覧",
+  "settings": []
+}
+{% endschema %}
+
+{% stylesheet %}
+.blog-page {
+  padding: 2rem 0 4rem;
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.blog-header h1 {
+  font-size: 2.4rem;
+  color: #2c5530;
+  margin-bottom: 0.5rem;
+}
+
+.blog-tag-filter {
+  color: #666;
+  font-size: 1.4rem;
+}
+
+.blog-articles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.blog-article-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.blog-article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.article-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.article-content {
+  padding: 1.5rem;
+}
+
+.article-content time {
+  font-size: 1.2rem;
+  color: #999;
+}
+
+.article-content h2 {
+  font-size: 1.6rem;
+  margin: 0.5rem 0 1rem;
+  line-height: 1.4;
+}
+
+.article-content h2 a {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-content h2 a:hover {
+  color: #2c5530;
+}
+
+.article-excerpt {
+  font-size: 1.4rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.article-tags {
+  margin-bottom: 1rem;
+}
+
+.article-tags a {
+  display: inline-block;
+  background: #f0f0f0;
+  color: #666;
+  font-size: 1.2rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.article-tags a:hover {
+  background: #2c5530;
+  color: #fff;
+}
+
+.read-more {
+  display: inline-block;
+  color: #2c5530;
+  font-size: 1.4rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+.pagination {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .blog-articles {
+    grid-template-columns: 1fr;
+  }
+}
+{% endstylesheet %}

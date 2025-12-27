@@ -1,0 +1,190 @@
+{%- comment -%}
+  Article detail section
+  LIFE NOSTALGIA - Plant Shop
+{%- endcomment -%}
+
+<article class="article-page">
+  <div class="container">
+    <header class="article-header">
+      <div class="article-meta">
+        <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+          {{ article.published_at | date: '%Y年%m月%d日' }}
+        </time>
+        <span class="article-author">{{ article.author }}</span>
+      </div>
+
+      <h1>{{ article.title }}</h1>
+
+      {%- if article.tags.size > 0 -%}
+        <div class="article-tags">
+          {%- for tag in article.tags -%}
+            <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </header>
+
+    {%- if article.image -%}
+      <div class="article-featured-image">
+        {{ article.image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+      </div>
+    {%- endif -%}
+
+    <div class="article-body">
+      {{ article.content }}
+    </div>
+
+    <footer class="article-footer">
+      <a href="{{ blog.url }}" class="back-to-blog">← ブログ一覧に戻る</a>
+
+      {%- if blog.next_article or blog.previous_article -%}
+        <nav class="article-navigation">
+          {%- if blog.previous_article -%}
+            <a href="{{ blog.previous_article }}" class="prev-article">
+              ← 前の記事
+            </a>
+          {%- endif -%}
+          {%- if blog.next_article -%}
+            <a href="{{ blog.next_article }}" class="next-article">
+              次の記事 →
+            </a>
+          {%- endif -%}
+        </nav>
+      {%- endif -%}
+    </footer>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "ブログ記事",
+  "settings": []
+}
+{% endschema %}
+
+{% stylesheet %}
+.article-page {
+  padding: 2rem 0 4rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.article-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.article-meta {
+  font-size: 1.3rem;
+  color: #999;
+  margin-bottom: 1rem;
+}
+
+.article-meta time {
+  margin-right: 1rem;
+}
+
+.article-header h1 {
+  font-size: 2.4rem;
+  color: #333;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.article-header .article-tags {
+  margin-top: 1rem;
+}
+
+.article-header .article-tags a {
+  display: inline-block;
+  background: #2c5530;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  margin: 0 0.3rem 0.5rem;
+}
+
+.article-header .article-tags a:hover {
+  background: #1e3d22;
+}
+
+.article-featured-image {
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.article-featured-image img {
+  width: 100%;
+  height: auto;
+}
+
+.article-body {
+  font-size: 1.6rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.article-body p {
+  margin-bottom: 1.5rem;
+}
+
+.article-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+.article-body h2, .article-body h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #2c5530;
+}
+
+.article-footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.back-to-blog {
+  display: inline-block;
+  color: #2c5530;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.back-to-blog:hover {
+  text-decoration: underline;
+}
+
+.article-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.article-navigation a {
+  color: #2c5530;
+  text-decoration: none;
+  font-size: 1.4rem;
+}
+
+.article-navigation a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .article-header h1 {
+    font-size: 2rem;
+  }
+
+  .article-body {
+    font-size: 1.5rem;
+  }
+}
+{% endstylesheet %}
