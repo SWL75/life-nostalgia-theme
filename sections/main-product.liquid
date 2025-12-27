@@ -167,6 +167,21 @@
     top: 0;
   }
 
+  .product-image-main {
+    max-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-image-main img,
+  .product-image-main .product-image {
+    max-height: 50vh;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
   .product-title {
     font-size: 2rem;
   }
@@ -185,6 +200,15 @@
     padding: 1.5rem 0;
   }
 
+  .product-image-main {
+    max-height: 45vh;
+  }
+
+  .product-image-main img,
+  .product-image-main .product-image {
+    max-height: 45vh;
+  }
+
   .product-title {
     font-size: 1.8rem;
   }
@@ -195,6 +219,7 @@
 
   .product-thumbnail {
     width: 60px;
+    height: 60px;
   }
 
   .product-form {
