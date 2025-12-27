@@ -1,0 +1,116 @@
+{%- comment -%}
+  About Page Section
+  LIFE NOSTALGIA - Plant Shop
+{%- endcomment -%}
+
+<div class="about-page">
+  <div class="container">
+    <div class="about-content">
+      <h1 class="about-title">ABOUT</h1>
+
+      <div class="about-main">
+        <h2 class="shop-name">LIFE NOSTALGIA</h2>
+
+        <div class="shop-details">
+          <dl class="shop-info">
+            <dt>address</dt>
+            <dd>東京都世田谷区下馬2－44－11</dd>
+          </dl>
+
+          <dl class="shop-info">
+            <dt>tel</dt>
+            <dd>03 5787 6672</dd>
+          </dl>
+        </div>
+
+        <div class="shop-description">
+          <p>植物と植物に纏わる小物、<br>雑貨を扱っております。</p>
+          <p>レンタルスペースの運営もスタートしました。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Aboutページ",
+  "settings": []
+}
+{% endschema %}
+
+{% stylesheet %}
+.about-page {
+  padding: 4rem 0;
+  min-height: 60vh;
+}
+
+.about-content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-title {
+  font-family: 'Libre Caslon Text', serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.3em;
+  color: #AB8666;
+  margin-bottom: 3rem;
+}
+
+.shop-name {
+  font-family: 'Libre Caslon Text', serif;
+  font-size: 2.4rem;
+  letter-spacing: 0.15em;
+  color: #252525;
+  margin-bottom: 2rem;
+}
+
+.shop-details {
+  margin-bottom: 2rem;
+}
+
+.shop-info {
+  margin: 0 0 1rem;
+}
+
+.shop-info dt {
+  font-family: 'Libre Caslon Text', serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  color: #AB8666;
+  margin-bottom: 0.3rem;
+}
+
+.shop-info dd {
+  font-size: 1.5rem;
+  color: #252525;
+  margin: 0;
+}
+
+.shop-description {
+  margin-top: 2rem;
+}
+
+.shop-description p {
+  font-size: 1.5rem;
+  line-height: 2;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .about-page {
+    padding: 3rem 1.5rem;
+  }
+
+  .shop-name {
+    font-size: 2rem;
+  }
+
+  .shop-description p {
+    font-size: 1.4rem;
+  }
+}
+{% endstylesheet %}

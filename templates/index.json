@@ -3,31 +3,34 @@
     "hero": {
       "type": "hero-banner",
       "settings": {
-        "heading": "植物と暮らす",
-        "subheading": "LIFE NOSTALGIA",
-        "button_text": "商品を見る",
-        "button_link": "/collections/all"
+        "heading": "LIFE NOSTALGIA",
+        "subheading": "",
+        "text": "",
+        "button_text": "",
+        "height": 80
       }
     },
     "featured-plants": {
       "type": "featured-collection",
       "settings": {
-        "title": "おすすめの植物",
-        "products_to_show": 4,
+        "title": "",
+        "products_to_show": 12,
         "show_view_all": true
       }
     },
-    "about-section": {
-      "type": "rich-text",
+    "store-info": {
+      "type": "store-info",
       "settings": {
-        "heading": "LIFE NOSTALGIAについて",
-        "text": "植物と鉢を通じて、暮らしに彩りを添えるお手伝いをしています。"
+        "title": "ABOUT",
+        "store_name": "LIFE NOSTALGIA",
+        "address": "東京都世田谷区下馬2－44－11",
+        "phone": "03 5787 6672"
       }
     }
   },
   "order": [
     "hero",
     "featured-plants",
-    "about-section"
+    "store-info"
   ]
 }

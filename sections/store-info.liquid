@@ -1,0 +1,130 @@
+{%- comment -%}
+  Store Info Section
+  LIFE NOSTALGIA - Plant Shop
+{%- endcomment -%}
+
+<section class="store-info">
+  <div class="container">
+    <div class="store-info-content">
+      <h2 class="store-info-title">ABOUT</h2>
+      <div class="store-info-details">
+        <h3 class="store-name">LIFE NOSTALGIA</h3>
+        <dl class="store-contact">
+          <dt>address</dt>
+          <dd>東京都世田谷区下馬2－44－11</dd>
+          <dt>tel</dt>
+          <dd>03 5787 6672</dd>
+        </dl>
+        <p class="store-description">
+          植物と植物に纏わる小物、<br>
+          雑貨を扱っております。<br>
+          レンタルスペースの運営もスタートしました。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "店舗情報",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "タイトル",
+      "default": "ABOUT"
+    },
+    {
+      "type": "text",
+      "id": "store_name",
+      "label": "店舗名",
+      "default": "LIFE NOSTALGIA"
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "住所",
+      "default": "東京都世田谷区下馬2－44－11"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "電話番号",
+      "default": "03 5787 6672"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "説明文"
+    }
+  ],
+  "presets": [
+    {
+      "name": "店舗情報"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.store-info {
+  padding: 4rem 0;
+  background: #f8f7f5;
+}
+
+.store-info-content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.store-info-title {
+  font-family: 'Libre Caslon Text', serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.2em;
+  color: #AB8666;
+  margin-bottom: 2rem;
+}
+
+.store-name {
+  font-family: 'Libre Caslon Text', serif;
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  color: #252525;
+  margin-bottom: 1.5rem;
+}
+
+.store-contact {
+  margin: 0 0 1.5rem;
+}
+
+.store-contact dt {
+  font-size: 1.2rem;
+  color: #AB8666;
+  letter-spacing: 0.1em;
+  margin-top: 1rem;
+}
+
+.store-contact dd {
+  font-size: 1.4rem;
+  color: #252525;
+  margin: 0.3rem 0 0;
+}
+
+.store-description {
+  font-size: 1.4rem;
+  line-height: 2;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .store-info {
+    padding: 3rem 1.5rem;
+  }
+
+  .store-name {
+    font-size: 1.6rem;
+  }
+}
+{% endstylesheet %}
